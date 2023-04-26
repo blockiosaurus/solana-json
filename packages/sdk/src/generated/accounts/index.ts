@@ -1,5 +1,5 @@
-export * from './AccountThingy';
+export * from './JsonMetadata';
 
-import { AccountThingy } from './AccountThingy';
+import { JsonMetadata } from './JsonMetadata';
 
-export const accountProviders = { AccountThingy };
+export const accountProviders = { JsonMetadata };

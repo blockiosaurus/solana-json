@@ -1,5 +1,5 @@
 [package]
-name = "my-program-name"
+name = "json-metadata"
 version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
@@ -8,11 +8,12 @@ publish = false
 [dependencies]
 solana-program = "1.15.2"
 shank = "0.0.12"
-borsh = "0.10.3"
+borsh = "0.9.3"
 thiserror = "~1.0"
 num-derive = "0.3.3"
 num-traits = "~0.2"
-
+serde_json = { version = "1.0.96", features = ["std"]}
+mpl-utils = "0.2.0"
 
 [features]
 test-bpf = []

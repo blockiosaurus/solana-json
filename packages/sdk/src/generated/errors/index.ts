@@ -12,24 +12,147 @@ const createErrorFromCodeLookup: Map<number, () => ErrorWithCode> = new Map();
 const createErrorFromNameLookup: Map<string, () => ErrorWithCode> = new Map();
 
 /**
- * ErrorName: 'Error message'
+ * AlreadyInitialized: 'The account has already been initialized'
  *
  * @category Errors
  * @category generated
  */
-export class ErrorNameError extends Error {
+export class AlreadyInitializedError extends Error {
   readonly code: number = 0x0;
-  readonly name: string = 'ErrorName';
+  readonly name: string = 'AlreadyInitialized';
   constructor() {
-    super('Error message');
+    super('The account has already been initialized');
     if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ErrorNameError);
+      Error.captureStackTrace(this, AlreadyInitializedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x0, () => new ErrorNameError());
-createErrorFromNameLookup.set('ErrorName', () => new ErrorNameError());
+createErrorFromCodeLookup.set(0x0, () => new AlreadyInitializedError());
+createErrorFromNameLookup.set('AlreadyInitialized', () => new AlreadyInitializedError());
+
+/**
+ * NotInitialized: 'The account has not yet been initialized'
+ *
+ * @category Errors
+ * @category generated
+ */
+export class NotInitializedError extends Error {
+  readonly code: number = 0x1;
+  readonly name: string = 'NotInitialized';
+  constructor() {
+    super('The account has not yet been initialized');
+    if (typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, NotInitializedError);
+    }
+  }
+}
+
+createErrorFromCodeLookup.set(0x1, () => new NotInitializedError());
+createErrorFromNameLookup.set('NotInitialized', () => new NotInitializedError());
+
+/**
+ * MetadataDerivedKeyInvalid: 'The key for the JSON metadata account is invalid.'
+ *
+ * @category Errors
+ * @category generated
+ */
+export class MetadataDerivedKeyInvalidError extends Error {
+  readonly code: number = 0x2;
+  readonly name: string = 'MetadataDerivedKeyInvalid';
+  constructor() {
+    super('The key for the JSON metadata account is invalid.');
+    if (typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, MetadataDerivedKeyInvalidError);
+    }
+  }
+}
+
+createErrorFromCodeLookup.set(0x2, () => new MetadataDerivedKeyInvalidError());
+createErrorFromNameLookup.set(
+  'MetadataDerivedKeyInvalid',
+  () => new MetadataDerivedKeyInvalidError(),
+);
+
+/**
+ * InvalidSystemProgram: 'The system program account is invalid.'
+ *
+ * @category Errors
+ * @category generated
+ */
+export class InvalidSystemProgramError extends Error {
+  readonly code: number = 0x3;
+  readonly name: string = 'InvalidSystemProgram';
+  constructor() {
+    super('The system program account is invalid.');
+    if (typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, InvalidSystemProgramError);
+    }
+  }
+}
+
+createErrorFromCodeLookup.set(0x3, () => new InvalidSystemProgramError());
+createErrorFromNameLookup.set('InvalidSystemProgram', () => new InvalidSystemProgramError());
+
+/**
+ * InvalidJson: 'The JSON data is invalid.'
+ *
+ * @category Errors
+ * @category generated
+ */
+export class InvalidJsonError extends Error {
+  readonly code: number = 0x4;
+  readonly name: string = 'InvalidJson';
+  constructor() {
+    super('The JSON data is invalid.');
+    if (typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, InvalidJsonError);
+    }
+  }
+}
+
+createErrorFromCodeLookup.set(0x4, () => new InvalidJsonError());
+createErrorFromNameLookup.set('InvalidJson', () => new InvalidJsonError());
+
+/**
+ * BorshSerializeError: 'Borsh failed to serialize this account.'
+ *
+ * @category Errors
+ * @category generated
+ */
+export class BorshSerializeErrorError extends Error {
+  readonly code: number = 0x5;
+  readonly name: string = 'BorshSerializeError';
+  constructor() {
+    super('Borsh failed to serialize this account.');
+    if (typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, BorshSerializeErrorError);
+    }
+  }
+}
+
+createErrorFromCodeLookup.set(0x5, () => new BorshSerializeErrorError());
+createErrorFromNameLookup.set('BorshSerializeError', () => new BorshSerializeErrorError());
+
+/**
+ * InvalidAuthority: 'The payer does not have authority to perform this action.'
+ *
+ * @category Errors
+ * @category generated
+ */
+export class InvalidAuthorityError extends Error {
+  readonly code: number = 0x6;
+  readonly name: string = 'InvalidAuthority';
+  constructor() {
+    super('The payer does not have authority to perform this action.');
+    if (typeof Error.captureStackTrace === 'function') {
+      Error.captureStackTrace(this, InvalidAuthorityError);
+    }
+  }
+}
+
+createErrorFromCodeLookup.set(0x6, () => new InvalidAuthorityError());
+createErrorFromNameLookup.set('InvalidAuthority', () => new InvalidAuthorityError());
 
 /**
  * Attempts to resolve a custom program error from the provided error code.
