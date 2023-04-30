@@ -33,7 +33,11 @@ pub(crate) fn process_add_authority(
     let bump = assert_derivation(
         &crate::ID,
         json_metadata_account,
-        &[PREFIX.as_bytes(), json_account.key.as_ref()],
+        &[
+            PREFIX.as_bytes(),
+            crate::ID.as_ref(),
+            json_account.key.as_ref(),
+        ],
         OnchainMetadataError::MetadataDerivedKeyInvalid,
     )?;
     if bump != json_metadata.bump {

@@ -8,7 +8,7 @@
         {
           "name": "jsonAccount",
           "isMut": true,
-          "isSigner": false,
+          "isSigner": true,
           "desc": "The account to store the metadata in."
         },
         {

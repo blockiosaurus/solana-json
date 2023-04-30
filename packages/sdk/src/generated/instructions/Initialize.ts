@@ -20,7 +20,7 @@ export const InitializeStruct = new beet.BeetArgsStruct<{ instructionDiscriminat
 /**
  * Accounts required by the _Initialize_ instruction
  *
- * @property [_writable_] jsonAccount The account to store the metadata in.
+ * @property [_writable_, **signer**] jsonAccount The account to store the metadata in.
  * @property [_writable_] jsonMetadataAccount The account to store the json account's metadata in.
  * @property [_writable_, **signer**] payer The account that will pay for the transaction and rent.
  * @category Instructions
@@ -55,7 +55,7 @@ export function createInitializeInstruction(
     {
       pubkey: accounts.jsonAccount,
       isWritable: true,
-      isSigner: false,
+      isSigner: true,
     },
     {
       pubkey: accounts.jsonMetadataAccount,

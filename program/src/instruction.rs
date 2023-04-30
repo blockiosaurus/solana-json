@@ -31,7 +31,7 @@ pub struct RemoveAuthorityArgs {
 #[rustfmt::skip]
 pub enum OnchainMetadataInstructions {
     /// Description of this instruction
-    #[account(0, writable, name="json_account", desc = "The account to store the metadata in.")]
+    #[account(0, writable, signer, name="json_account", desc = "The account to store the metadata in.")]
     #[account(1, writable, name="json_metadata_account", desc = "The account to store the json account's metadata in.")]
     #[account(2, writable, signer, name="payer", desc="The account that will pay for the transaction and rent.")]
     #[account(3, name="system_program", desc = "System program")]

@@ -32,7 +32,11 @@ pub(crate) fn process_initialize(accounts: &[AccountInfo]) -> ProgramResult {
     let bump = assert_derivation(
         &crate::ID,
         json_metadata_account,
-        &[PREFIX.as_bytes(), json_account.key.as_ref()],
+        &[
+            PREFIX.as_bytes(),
+            crate::ID.as_ref(),
+            json_account.key.as_ref(),
+        ],
         OnchainMetadataError::MetadataDerivedKeyInvalid,
     )?;
 
@@ -53,6 +57,7 @@ pub(crate) fn process_initialize(accounts: &[AccountInfo]) -> ProgramResult {
     };
 
     // Initialize the JSON metadata account.
+    solana_program::msg!("Creating JSON account");
     let rent = Rent::get()?;
     let rent_amount = rent.minimum_balance(serialized_data.len());
     invoke(
@@ -76,13 +81,19 @@ pub(crate) fn process_initialize(accounts: &[AccountInfo]) -> ProgramResult {
     let serialized_metadata = &json_metadata.try_to_vec()?;
 
     // Initialize the JSON metadata account.
+    solana_program::msg!("Creating JSON Metadata account");
     create_or_allocate_account_raw(
         crate::ID,
         json_metadata_account,
         system_program,
         payer,
         serialized_metadata.len(),
-        &[PREFIX.as_bytes(), json_account.key.as_ref()],
+        &[
+            PREFIX.as_bytes(),
+            crate::ID.as_ref(),
+            json_account.key.as_ref(),
+            &[bump],
+        ],
     )?;
 
     // Write the JSON metadata to the JSON metadata account.
