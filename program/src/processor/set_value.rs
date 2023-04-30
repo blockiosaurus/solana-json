@@ -53,15 +53,19 @@ pub(crate) fn process_set_value(accounts: &[AccountInfo], args: SetValueArgs) ->
         return Err(OnchainMetadataError::InvalidSystemProgram.into());
     }
 
-    let mut json_data: serde_json::Value = serde_json::from_slice(&json_account.data.borrow())
-        .map_err(|_| OnchainMetadataError::InvalidJson)?;
+    solana_program::msg!("JSON account data: {:?}", json_account.data.borrow());
+    let mut json_data: serde_json::Value =
+        serde_json::from_slice(&json_account.data.borrow()).unwrap_or(serde_json::Value::Null);
+    // .map_err(|_| OnchainMetadataError::InvalidJson)?;
 
+    solana_program::msg!("New data: {:?}", args.value);
     let new_data: serde_json::Value =
         serde_json::from_str(&args.value).map_err(|_| OnchainMetadataError::InvalidJson)?;
 
     merge(&mut json_data, new_data);
 
     // Write the updated JSON metadata account back to the account.
+    solana_program::msg!("Updated JSON data: {:?}", json_data);
     let serialized_data =
         serde_json::to_vec(&json_data).map_err(|_| OnchainMetadataError::InvalidJson)?;
 
