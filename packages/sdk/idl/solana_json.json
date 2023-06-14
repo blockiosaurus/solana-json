@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "json_metadata",
+  "name": "solana_json",
   "instructions": [
     {
       "name": "Initialize",

@@ -1,9 +1,9 @@
 {
-  "name": "json-metadata",
+  "name": "solana-json",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/src/json-metadata.js",
-  "types": "dist/src/json-metadata.d.ts",
+  "main": "dist/src/solana-json.js",
+  "types": "dist/src/solana-json.d.ts",
   "scripts": {
     "check:publish-ready": "yarn build && yarn test",
     "postversion": "git add package.json && git commit -m \\\"chore: update $npm_package_name to v$npm_package_version\\\" && git tag $npm_package_name@$npm_package_version",

@@ -1,7 +1,7 @@
 import { PublicKey } from '@solana/web3.js';
 import { PROGRAM_ADDRESS } from './generated';
 
-export const PREFIX: string = 'JSON';
+export const PREFIX = 'JSON';
 
 export function find_metadata_account(json_account: PublicKey) {
   return PublicKey.findProgramAddressSync(

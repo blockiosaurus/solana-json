@@ -6,7 +6,7 @@ const binaryInstallDir = path.join(__dirname, '.crates');
 
 module.exports = {
     idlGenerator: 'shank',
-    programName: 'json_metadata',
+    programName: 'solana_json',
     idlDir,
     sdkDir,
     binaryInstallDir,

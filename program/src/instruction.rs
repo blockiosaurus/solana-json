@@ -3,26 +3,26 @@ use shank::ShankInstruction;
 use solana_program::pubkey::Pubkey;
 
 #[repr(C)]
-#[derive(PartialEq, Debug, Clone, BorshSerialize, BorshDeserialize)]
+#[derive(PartialEq, Eq, Debug, Clone, BorshSerialize, BorshDeserialize)]
 pub struct SetValueArgs {
     pub value: String,
 }
 
 #[repr(C)]
 #[repr(C)]
-#[derive(PartialEq, Debug, Clone, BorshSerialize, BorshDeserialize)]
+#[derive(PartialEq, Eq, Debug, Clone, BorshSerialize, BorshDeserialize)]
 pub struct AppendValueArgs {
     pub value: String,
 }
 
 #[repr(C)]
-#[derive(BorshSerialize, BorshDeserialize, PartialEq, Debug, Clone)]
+#[derive(BorshSerialize, BorshDeserialize, PartialEq, Eq, Debug, Clone)]
 pub struct AddAuthorityArgs {
     pub new_authority: Pubkey,
 }
 
 #[repr(C)]
-#[derive(BorshSerialize, BorshDeserialize, PartialEq, Debug, Clone)]
+#[derive(BorshSerialize, BorshDeserialize, PartialEq, Eq, Debug, Clone)]
 pub struct RemoveAuthorityArgs {
     pub authority: Pubkey,
 }

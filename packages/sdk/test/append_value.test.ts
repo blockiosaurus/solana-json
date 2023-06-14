@@ -73,7 +73,7 @@ import test from 'tape';
 //     }`,
 // ];
 
-test('SetValue', async (t) => {
+test('AppendValue', async (t) => {
   const connection = new Connection('http://localhost:8899', 'finalized');
   const payer = Keypair.generate();
   const airdrop_txid = await connection.requestAirdrop(payer.publicKey, 1000000000);
@@ -115,22 +115,22 @@ test('SetValue', async (t) => {
     },
   );
 
-  const latestBlockhash = await connection.getLatestBlockhash();
-  const msg = new TransactionMessage({
+  const latestBlockhash0 = await connection.getLatestBlockhash();
+  const msg0 = new TransactionMessage({
     payerKey: payer.publicKey,
-    recentBlockhash: latestBlockhash.blockhash,
+    recentBlockhash: latestBlockhash0.blockhash,
     instructions: [init_ix, set_value_ix_0, set_value_ix_1],
   }).compileToV0Message();
-  const tx = new VersionedTransaction(msg);
+  const tx0 = new VersionedTransaction(msg0);
 
-  tx.sign([payer, jsonAccountKeypair]);
-  const txid = await connection.sendTransaction(tx, { skipPreflight: true });
-  await connection.confirmTransaction(txid, 'finalized');
-  console.log(txid);
+  tx0.sign([payer, jsonAccountKeypair]);
+  const txid0 = await connection.sendTransaction(tx0, { skipPreflight: true });
+  await connection.confirmTransaction(txid0, 'finalized');
+  console.log(txid0);
 
-  const jsonAccountInfo = await connection.getAccountInfo(jsonAccountKeypair.publicKey);
-  const jsonAccountData = jsonAccountInfo.data.toString();
-  console.log(jsonAccountData);
+  const jsonAccountInfo0 = await connection.getAccountInfo(jsonAccountKeypair.publicKey);
+  const jsonAccountData0 = jsonAccountInfo0.data.toString();
+  console.log('JSON: ', jsonAccountData0);
 
   const jsonMetadataAccountData = await JsonMetadata.fromAccountAddress(
     connection,
@@ -144,4 +144,35 @@ test('SetValue', async (t) => {
   console.log(payer.publicKey);
   t.assert(authorities.length == 1, 'There is one authority');
   t.assert(authorities.includes(payer.publicKey.toString()), 'The only authority is the payer');
+
+  const set_value_ix_2 = createSetValueInstruction(
+    {
+      jsonAccount: jsonAccountKeypair.publicKey,
+      jsonMetadataAccount: jsonMetadataAccount[0],
+      payer: payer.publicKey,
+    },
+    {
+      setValueArgs: {
+        value:
+          '{"image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAPFBMVEUAAADoijZnOTEODAyyi3j/4Lfisn78pXCwWyz4xTr////icoX49kRhpT9Hcji0ICpCpFk9b0MUNGQoXMSCKWhnAAAAAXRSTlMAQObYZgAAAP9JREFUOMuNkAmugzAMRDHO4iwQaO9/1z9Oot8FI3UQGYt5tiOW3xRcwHmcztm5C0ocxxFsAp+BnOcBc/YAPLWeQf3mBkFqrbC7OzgRqbpp7boSpYigv+cW00opo98mWmtl9tvEo7XRTxoQ4f0Eno/eT5Ag6f454enczFW9Wr//lDZumbry9gJeWmljRkLD1/UKZOZdoJ0503XAQrQj78ROAC7SO+KdZgPMPA4b4DcZwExEZnFDSM5i5lBkwvKcCcbRAHykf0VvAMn7wUQUyQAopegj5GNKZK9IYCIOe4X3mE1ItbAAfEU7c4paLYY8pIC6lWPEXGEPgHQ2EeL3/A89Zgj/88QojwAAAABJRU5ErkJggg=="}',
+      },
+    },
+  );
+
+  const latestBlockhash1 = await connection.getLatestBlockhash();
+  const msg1 = new TransactionMessage({
+    payerKey: payer.publicKey,
+    recentBlockhash: latestBlockhash1.blockhash,
+    instructions: [set_value_ix_2],
+  }).compileToV0Message();
+  const tx1 = new VersionedTransaction(msg1);
+
+  tx1.sign([payer]);
+  const txid1 = await connection.sendTransaction(tx1, { skipPreflight: true });
+  await connection.confirmTransaction(txid1, 'finalized');
+  console.log(txid1);
+
+  const jsonAccountInfo1 = await connection.getAccountInfo(jsonAccountKeypair.publicKey);
+  const jsonAccountData1 = jsonAccountInfo1.data.toString();
+  console.log('JSON: ', jsonAccountData1);
 });

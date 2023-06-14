@@ -4,7 +4,7 @@ const path = require('path');
 const accountProviders = require('./packages/sdk/dist/src/generated/accounts');
 
 const localDeployDir = path.join(__dirname, 'program', 'target', 'deploy');
-const MY_PROGRAM_ID = require("./packages/sdk/idl/json_metadata.json").metadata.address;
+const MY_PROGRAM_ID = require("./packages/sdk/idl/solana_json.json").metadata.address;
 
 function localDeployPath(programName) {
     return path.join(localDeployDir, `${programName}.so`);
@@ -12,9 +12,9 @@ function localDeployPath(programName) {
 
 const programs = [
     {
-        label: 'json_metadata',
+        label: 'solana_json',
         programId: MY_PROGRAM_ID,
-        deployPath: localDeployPath('json_metadata')
+        deployPath: localDeployPath('solana_json')
     },
 ];
 

@@ -78,6 +78,10 @@ pub(crate) fn process_append_value(
         serialized_data.len(),
     );
 
+    let json_data: serde_json::Value = serde_json::from_slice(&json_account.data.borrow())
+        .map_err(|_| OnchainMetadataError::InvalidJson)?;
+    solana_program::msg!("JSON account data: {:?}", json_data);
+
     Ok(())
 }
 

@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["src/json-metadata.ts"],
+  "entryPoints": ["src/index.ts"],
   "excludeInternal": true,
   "excludePrivate": true,
   "categorizeByGroup": false,
@@ -17,5 +17,5 @@
   ],
   "readme": "none",
   "emit": "both",
-  "out": "./docs/json-metadata"
+  "out": "./docs/solana-json"
 }

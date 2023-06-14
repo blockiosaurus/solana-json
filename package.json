@@ -1,5 +1,5 @@
 {
-  "name": "json-metadata-workspace",
+  "name": "solana-json-workspace",
   "packageManager": "yarn@3.2.0-rc.12",
   "version": "0.0.0",
   "description": "",
@@ -8,16 +8,16 @@
   "private": true,
   "scripts": {
     "build:rust": "(cd program; cargo build-bpf)",
-    "build:docs": "yarn workspace json-metadata build:docs",
-    "build:sdk": "yarn workspace json-metadata build",
-    "test:sdk": "yarn workspace json-metadata test",
+    "build:docs": "yarn workspace solana-json build:docs",
+    "build:sdk": "yarn workspace solana-json build",
+    "test:sdk": "yarn workspace solana-json test",
     "build": "yarn build:rust && yarn solita && yarn fix:format && yarn build:sdk && yarn build:docs",
     "test": "yarn test:sdk",
     "update-sol-deps": "./scripts/update-solana-dependencies.sh",
     "rename": "./scripts/rename.sh",
     "amman": "./scripts/amman.sh",
-    "fix:format": "(cd program; cargo fmt) && yarn workspace json-metadata fix:prettier",
-    "lint": "(cd program; cargo clippy) && yarn workspace json-metadata lint"
+    "fix:format": "(cd program; cargo fmt) && yarn workspace solana-json fix:prettier",
+    "lint": "(cd program; cargo clippy) && yarn workspace solana-json lint"
   },
   "workspaces": [
     "packages/*"
@@ -31,6 +31,8 @@
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.7.1"
+    "gts": "^3.1.1",
+    "prettier": "^2.7.1",
+    "typescript": "^5.1.3"
   }
 }

@@ -2236,25 +2236,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "json-metadata"
-version = "0.1.0"
-dependencies = [
- "assert_matches",
- "borsh",
- "mpl-utils",
- "num-derive",
- "num-traits",
- "serde_json",
- "shank",
- "solana-logger",
- "solana-program",
- "solana-program-test",
- "solana-sdk",
- "solana-validator",
- "thiserror",
-]
-
-[[package]]
 name = "json5"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4955,6 +4936,25 @@ dependencies = [
  "solana-version",
  "solana-vote-program",
  "static_assertions",
+ "thiserror",
+]
+
+[[package]]
+name = "solana-json"
+version = "0.1.0"
+dependencies = [
+ "assert_matches",
+ "borsh",
+ "mpl-utils",
+ "num-derive",
+ "num-traits",
+ "serde_json",
+ "shank",
+ "solana-logger",
+ "solana-program",
+ "solana-program-test",
+ "solana-sdk",
+ "solana-validator",
  "thiserror",
 ]
 
